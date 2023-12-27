@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/bt_click"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="加载appt后的9.png，需要配置fitXY，这块可以统一设置进去，但是难恢复。点击->">
+
+        </Button>
+
+        <ImageView
+            android:scaleType="fitXY"
+            android:id="@+id/iv_test"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+        </ImageView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

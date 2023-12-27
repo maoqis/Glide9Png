@@ -1,0 +1,4 @@
+
+rootProject.name = "Glide9Png"
+include ':glide9png'
+include ':app'
