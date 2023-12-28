@@ -6,7 +6,7 @@ ext["signing.keyId"] = 'C2D0199D'
 ext["signing.password"] = 'qq151730464'
 ext["signing.secretKeyRingFile"] = '/Users/maoqis/Documents/work/maven/com.github.maoqis/keyfile.gpg'
 ext["ossrhUsername"] = 'maoqis'
-ext["ossrhPassword"] = ''
+ext["ossrhPassword"] = '' //replace by local.properties
 //TODO: end
 
 version = VERSION_NAME
@@ -116,12 +116,12 @@ publishing {
             //"https://oss.sonatype.org/content/repositories/snapshots/"
             // You only need this if you want to publish snapshots, otherwise just set the URL
             // to the release repo directly
-            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            url = version.contains('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
 
             // The username and password we've fetched earlier
 //                def ossrhUsername = getRepositoryUsername()
 //                def ossrhPassword = getRepositoryPassword()
-            print("ossrhUsername=" + ossrhUsername + " $VERSION_NAME" + " 没想到子仓库的的子moudle会调用子仓库的gradle。子仓库的属性变量也能加载")
+            print("ossrhUsername=" + ossrhUsername + " $VERSION_NAME" + " 没想到子仓库的的子moudle会调用子仓库的gradle。子仓库的属性变量也能加载 " + url)
             credentials {
                 username ossrhUsername
                 password ossrhPassword
