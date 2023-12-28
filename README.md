@@ -49,6 +49,11 @@ public class AppGlideSingle extends AppGlideModule {
 }
 ```
 
+``` 所在moudle需要引入编译器
+    annotationProcessor "com.github.bumptech.glide:compiler:4.16.0"
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+```
+
 ### 1.3 初始化代码
 
 ````
@@ -65,7 +70,14 @@ NinePngGlideApi.afterGlideInit(GlideApp.get(MainActivity.this.getApplicationCont
 
 由于9.png一般是用于背景图。如果src使用时候，需要考虑图片imageType，一般用于FitXY模式。
 
-## 源码简单介绍
+## 源码实现的步骤
+可以运行 AndroidExperienceCase 看下。
+
+```GlideNinePngFragment
+https://github.com/maoqis/AndroidExperienceCase/blob/master/app/src/main/java/com/maoqis/testcase/feature/GlideNinePngFragment.java
+```
 
 ## 参考
+
+
 
