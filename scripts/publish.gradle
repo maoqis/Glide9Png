@@ -6,11 +6,16 @@ apply plugin: 'signing'
 //    from android.sourceSets.main.java.source
 //}
 
-ext["signing.keyId"] = ''
-ext["signing.password"] = ''
-ext["signing.secretKeyRingFile"] = ''
-ext["ossrhUsername"] = ''
+//TODO: start 配置maven仓库gpg签名和仓库用户名密码
+ext["signing.keyId"] = 'C2D0199D'
+ext["signing.password"] = 'qq151730464'
+ext["signing.secretKeyRingFile"] = '/Users/maoqis/Documents/work/maven/com.github.maoqis/keyfile.gpg'
+ext["ossrhUsername"] = 'maoqis'
 ext["ossrhPassword"] = ''
+//TODO: end
+
+version = VERSION_NAME
+group = GROUP
 
 File secretPropsFile = project.rootProject.file('local.properties')
 if (secretPropsFile.exists()) {
@@ -27,8 +32,6 @@ if (secretPropsFile.exists()) {
 // JIRA: https://issues.sonatype.org/browse/OSSRH-65440?page=com.atlassian.jira.plugin.system.issuetabpanels%3Aall-tabpanel
 // Sonatype: https://s01.oss.sonatype.org/
 
-version = VERSION_NAME
-group = GROUP
 
 def getReleaseRepositoryUrl() {
     return hasProperty('LOCAL') ? localMavenRepo()
@@ -63,6 +66,8 @@ afterEvaluate {
                 // Two artifacts, the `aar` and the sources
                 artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
                 artifact androidSourcesJar
+                //            // 必须有这个 否则不会上传AAR包
+
 
                 // Self-explanatory metadata for the most part
                 pom {
@@ -124,8 +129,9 @@ afterEvaluate {
                 url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
 
                 // The username and password we've fetched earlier
-                def ossrhUsername = getRepositoryUsername()
-                def ossrhPassword = getRepositoryPassword()
+//                def ossrhUsername = getRepositoryUsername()
+//                def ossrhPassword = getRepositoryPassword()
+                print("ossrhUsername=" + ossrhUsername)
                 credentials {
                     username ossrhUsername
                     password ossrhPassword

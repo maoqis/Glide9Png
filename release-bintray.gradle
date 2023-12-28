@@ -1,29 +1,6 @@
 apply plugin: 'com.android.library'
 
 // Set up everything required for releasing on Bintray
-ext {
-    bintrayRepo = 'maven-home'
-    //bintrayUserOrg = 'individual'
-    bintrayName = "${GROUP}:${POM_ARTIFACT_ID}"
-    bintrayDescription = POM_DESCRIPTION
-    projectUrl = 'https://github.com/zjupure/GlideWebpDecoder'
-    issuesUrl = 'https://github.com/zjupure/GlideWebpDecoder'
-    scmUrl = 'https://github.com/zjupure/GlideWebpDecoder'
-    scmConnection = 'scm:git:https://github.com/zjupure/GlideWebpDecoder.git'
-    scmDeveloperConnection = 'scm:git:git@github.com:zjupure/GlideWebpDecoder.git'
-
-    publishedGroupId = GROUP
-    libraryName = 'glide-webpdecoder'
-    artifact = 'webpdecoder'
-
-    projectLicenses = {
-        license {
-            name 'BSD License'
-            url 'https://raw.githubusercontent.com/zjupure/GlideWebpDecoder/add-license-1/LICENSE'
-            distribution 'repo'
-        }
-    }
-}
 
 // Android tasks
 apply from: './../scripts/android-tasks.gradle'
@@ -36,6 +13,10 @@ afterEvaluate {
     Task build = project.tasks.getByName("build")
 
     Task assemble = project.tasks.getByName("assemble")
+    // Reason: Task ':glide9png:signReleasePublication' uses this output of task ':glide9png:bundleReleaseAar' without declaring an explicit or implicit dependency.
+    Task signReleasePublication = project.tasks.getByName("signReleasePublication")
+    Task bundleReleaseAar = project.tasks.getByName("bundleReleaseAar")
+    signReleasePublication.dependsOn(bundleReleaseAar)
     project.tasks.findAll {
         it.name.startsWith("publish")
     }.each {
