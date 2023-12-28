@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
         NinePngGlideApi.afterGlideInit(GlideApp.get(MainActivity.this.getApplicationContext()));
         setContentView(R.layout.activity_main);
         ImageView iv = findViewById(R.id.iv_test);
-//        String urlChunk = "https://raw.githubusercontent.com/maoqis/AndroidExperienceCase/master/app/src/main/assets/ninepatch_bubble_chunk.9.png";
-//        https://www.ffsup.com/ 图片30天过期，自己上传吧：https://f0.0sm.com/node0/2023/12/86587D8BBFF8072C-dd1df953adff45e2.png
-        String urlChunk = "https://f0.0sm.com/node0/2023/12/86587D8BBFF8072C-dd1df953adff45e2.png";
+
+        String url = "https://www.xijnp.com:8888/down/0jBZcbLr8X7h.png";
+        String urlChunk = "https://www.xijnp.com:8888/down/TYe2aqTbwIBj.png";
 
         findViewById(R.id.bt_click).setOnClickListener(v -> {
             Log.d(TAG, "bt_click: ");
