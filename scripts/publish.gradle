@@ -131,7 +131,7 @@ afterEvaluate {
                 // The username and password we've fetched earlier
 //                def ossrhUsername = getRepositoryUsername()
 //                def ossrhPassword = getRepositoryPassword()
-                print("ossrhUsername=" + ossrhUsername)
+                print("ossrhUsername=" + ossrhUsername +" $VERSION_NAME" +" 没想到子仓库的的子moudle会调用子仓库的gradle。子仓库的属性变量也能加载")
                 credentials {
                     username ossrhUsername
                     password ossrhPassword
