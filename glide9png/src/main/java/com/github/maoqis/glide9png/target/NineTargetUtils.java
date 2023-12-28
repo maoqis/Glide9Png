@@ -25,6 +25,7 @@ public class NineTargetUtils {
         if (tag instanceof ImageView.ScaleType) {
             Log.d(TAG, "restoreScaleType: ScaleType=" + tag);
             view.setScaleType((ImageView.ScaleType) tag);
+            view.setTag(TAG_9PNG_LAST_SCALE_TYPE, null);
         }
     }
 }
