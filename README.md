@@ -13,9 +13,19 @@ displaying NinePatchDrable to ImageView. You just need to init the library after
 源码中Glide4使用的4.16.0进行适配。版本号时候追加 .4.16.0
 
 ````
-    io.github.maoqis.glide9png:${VERSION}.4.16.0
+正式版TODO: implementation 'io.github.maoqis.glide9png:1.0.0.4.16.0'
+测试版DONE: implementation 'io.github.maoqis:glide9png:0.0.2.4.16.0-SNAPSHOT'
 ````
 
+```
+mavenCentral 应该会包含 0.0.2.4.16.0-SNAPSHOT 和 1.0.0.4.16.0 。
+可能push下面仓库后需要等段时间才能加载。
+
+//测试 snapshots
+maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' 
+
+```
+https://s01.oss.sonatype.org/content/repositories/snapshots/io/github/maoqis/glide9png/0.0.2.4.16.0-SNAPSHOT/maven-metadata.xml
 
 ### 1.2 Glide4 必要配置
 
