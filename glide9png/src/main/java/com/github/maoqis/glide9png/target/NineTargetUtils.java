@@ -8,7 +8,7 @@ public class NineTargetUtils {
     private static final String TAG = "NineTargetUtils";
     public static final int TAG_9PNG_LAST_SCALE_TYPE = "TAG_9PNG_LAST__SCALE_TYPE".hashCode();
 
-    public static void setFitXyFor9Png(ImageView view) {
+    public static void setFitXYFor9Png(ImageView view) {
         Log.d(TAG, "setFitXyFor9Png: ");
 
         ImageView.ScaleType scaleType = view.getScaleType();

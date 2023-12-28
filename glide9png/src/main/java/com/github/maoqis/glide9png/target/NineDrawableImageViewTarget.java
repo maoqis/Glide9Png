@@ -24,15 +24,12 @@ public class NineDrawableImageViewTarget extends DrawableImageViewTarget {
         }
         Log.d(TAG, "setResource: is9Png=" + is9Png);
         if (is9Png) {
-            NineTargetUtils.setFitXyFor9Png(view);
+            NineTargetUtils.setFitXYFor9Png(view);
             super.setResource(resource);
         } else {
             NineTargetUtils.restoreScaleType(view);
             super.setResource(resource);
         }
-
-
     }
-
 
 }

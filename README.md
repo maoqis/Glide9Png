@@ -25,6 +25,7 @@ mavenCentral 应该会包含 0.0.2.4.16.0-SNAPSHOT 和 1.0.0.4.16.0 。
 maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' 
 
 ```
+
 https://s01.oss.sonatype.org/content/repositories/snapshots/io/github/maoqis/glide9png/0.0.2.4.16.0-SNAPSHOT/maven-metadata.xml
 
 ### 1.2 Glide4 必要配置
@@ -71,6 +72,7 @@ NinePngGlideApi.afterGlideInit(GlideApp.get(MainActivity.this.getApplicationCont
 由于9.png一般是用于背景图。如果src使用时候，需要考虑图片imageType，一般用于FitXY模式。
 
 ## 源码实现的步骤
+
 可以运行 AndroidExperienceCase 看下。
 
 ```GlideNinePngFragment
@@ -79,6 +81,26 @@ https://github.com/maoqis/AndroidExperienceCase/blob/master/app/src/main/java/co
 
 ![image](https://raw.githubusercontent.com/maoqis/AndroidExperienceCase/master/images/temp.png)
 
+### NineDrawableImageViewTarget 中为ImageView 设置了 FitXY
+
+如果是非9.png 内容，通过tag 恢复到原来ScaleType
+
+```agsl
+    protected void setResource(@Nullable Drawable resource) {
+        boolean is9Png = false;
+        if (resource instanceof NinePatchDrawable) {
+            is9Png = true;
+        }
+        Log.d(TAG, "setResource: is9Png=" + is9Png);
+        if (is9Png) {
+            NineTargetUtils.setFitXyFor9Png(view);
+            super.setResource(resource);
+        } else {
+            NineTargetUtils.restoreScaleType(view);
+            super.setResource(resource);
+        }
+    }
+```
 
 ## 参考
 

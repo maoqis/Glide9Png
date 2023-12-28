@@ -27,7 +27,7 @@ public class NinePngImageViewTarget extends BitmapImageViewTarget {
                 + " resource=" + resource);
         if (is9Png) {
             Drawable drawable = NinePngUtils.createDrawable(resource, true, contextApp.getResources());
-            NineTargetUtils.setFitXyFor9Png(view);
+            NineTargetUtils.setFitXYFor9Png(view);
             view.setImageDrawable(drawable);
 
         } else {
