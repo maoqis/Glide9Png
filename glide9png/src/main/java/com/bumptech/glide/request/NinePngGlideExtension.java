@@ -1,5 +1,6 @@
 package com.bumptech.glide.request;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -12,6 +13,7 @@ import com.bumptech.glide.annotation.GlideExtension;
 import com.bumptech.glide.annotation.GlideOption;
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.Transformation;
+import com.bumptech.glide.load.engine.Resource;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.CenterInside;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
@@ -27,13 +29,12 @@ import java.lang.reflect.Field;
 
 /**
  * 因为包访问权限问题，暂只放到这个类中。
- *
+ * <p>
  * 1. .into时候，使用了几个transform。
  * 我们需要用NineTransformationWrap，把所有设置Transform的地方进行包装，在包装类里面进行判断9png不做bitmap转化，glide api中的转换都是Bitmap。
  * 2. 如果不asBimap(默认)，一定会经过DrawableTransformation .
  * 把解码后的 drawable（比如{@link NinePatchDrawable}） 转成bitmap, 这样会有问题。所以要跳过DrawableTransformation。
  * {@link BaseRequestOptions#transform(Transformation, boolean)}}
- *
  */
 @GlideExtension
 public class NinePngGlideExtension {
@@ -57,7 +58,7 @@ public class NinePngGlideExtension {
         Log.d(TAG, "optionalCenterCrop() called with: options = [" + options + "]");
         //需要和BaseRequestOptions在 相同包名下才能直接调用
         try {
-            BaseRequestOptions<?> ret = options.optionalTransform(DownsampleStrategy.CENTER_OUTSIDE, new NinePngTransformationWrap(new CenterCrop()));
+            BaseRequestOptions<?> ret = optionalTransform(options, DownsampleStrategy.CENTER_OUTSIDE, new NinePngTransformationWrap(new CenterCrop()));
             return ret;
         } catch (Exception e) {
             Log.e(TAG, "optionalCenterCrop: ", e);
@@ -83,7 +84,7 @@ public class NinePngGlideExtension {
 
     @GlideOption(override = GlideOption.OVERRIDE_REPLACE)
     public static BaseRequestOptions<?> optionalCircleCrop(BaseRequestOptions<?> options) {
-        return options.optionalTransform(DownsampleStrategy.CENTER_OUTSIDE, new NinePngTransformationWrap(new CircleCrop()));
+        return optionalTransform(options, DownsampleStrategy.CENTER_OUTSIDE, new NinePngTransformationWrap(new CircleCrop()));
     }
 
     @GlideOption(override = GlideOption.OVERRIDE_REPLACE)
@@ -121,12 +122,23 @@ public class NinePngGlideExtension {
         boolean isAutoCloneEnabled = getIsAutoCloneEnabled(options);
 
         if (isAutoCloneEnabled) {
-            return options.clone().transform(transformation, isRequired);
+            BaseRequestOptions<?> clone = options.clone();
+            return transform(clone, transformation, isRequired);
         }
 
-        DrawableTransformation drawableTransformation = new DrawableTransformation(transformation, isRequired);
+        DrawableTransformation drawableTransformation = new DrawableTransformation(transformation, isRequired) {
+            @NonNull
+            @Override
+            public Resource<Drawable> transform(@NonNull Context context, @NonNull Resource<Drawable> resource, int outWidth, int outHeight) {
+                if (resource instanceof NinePatchDrawable) {
+                    Log.d(TAG, "DrawableTransformation.transform: is NinePatchDrawable return resource");
+                    return resource;
+                }
+                return super.transform(context, resource, outWidth, outHeight);
+            }
+        };
         options.transform(Bitmap.class, transformation, isRequired);
-        options.transform(Drawable.class, drawableTransformation, isRequired);
+
         // TODO: remove BitmapDrawable decoder and this transformation.
         // Registering as BitmapDrawable is simply an optimization to avoid some iteration and
         // isAssignableFrom checks when obtaining the transformation later on. It can be removed without
@@ -137,6 +149,7 @@ public class NinePngGlideExtension {
         options.transform(NinePatchDrawable.class, new NinePngDrawableTransformation(transformation), isRequired);
         options.transform(BitmapDrawable.class, drawableTransformation.asBitmapDrawable(), isRequired);
         options.transform(GifDrawable.class, new GifDrawableTransformation(transformation), isRequired);
+        options.transform(Drawable.class, drawableTransformation, isRequired);
         return options.selfOrThrowIfLocked();
     }
 
@@ -148,7 +161,8 @@ public class NinePngGlideExtension {
                                                           @NonNull Transformation<Bitmap> transformation) {
         boolean isAutoCloneEnabled = getIsAutoCloneEnabled(options);
         if (isAutoCloneEnabled) {
-            return options.clone().optionalTransform(downsampleStrategy, transformation);
+            BaseRequestOptions<?> clone = options.clone();
+            return optionalTransform(clone, downsampleStrategy, transformation);
         }
         options.downsample(downsampleStrategy);
         //为了代码阅读方便，直接调用了this. ,不使用重装机制。
@@ -173,7 +187,8 @@ public class NinePngGlideExtension {
                                                   @NonNull DownsampleStrategy downsampleStrategy,
                                                   @NonNull Transformation<Bitmap> transformation) {
         if (getIsAutoCloneEnabled(options)) {
-            return options.clone().transform(downsampleStrategy, transformation);
+            BaseRequestOptions<?> clone = options.clone();
+            return transform(clone, downsampleStrategy, transformation);
         }
 
         options.downsample(downsampleStrategy);
@@ -252,6 +267,7 @@ public class NinePngGlideExtension {
 
     /**
      * 注意反射调用field时候 需要注意 要调用子类还是父类。
+     *
      * @param options
      * @return
      */
