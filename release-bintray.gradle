@@ -13,7 +13,6 @@ afterEvaluate {
     Task build = project.tasks.getByName("build")
 
     Task assemble = project.tasks.getByName("assemble")
-    // Reason: Task ':glide9png:signReleasePublication' uses this output of task ':glide9png:bundleReleaseAar' without declaring an explicit or implicit dependency.
     Task signReleasePublication = project.tasks.getByName("signReleasePublication")
     Task bundleReleaseAar = project.tasks.getByName("bundleReleaseAar")
     signReleasePublication.dependsOn(bundleReleaseAar)
@@ -22,5 +21,7 @@ afterEvaluate {
     }.each {
         it.dependsOn(build)
         it.dependsOn(assemble)
+        it.dependsOn(signReleasePublication)
+        it.dependsOn(bundleReleaseAar)
     }
 }
