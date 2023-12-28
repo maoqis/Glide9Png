@@ -14,12 +14,10 @@ displaying NinePatchDrable to ImageView. You just need to init the library after
 
 ````
 正式版TODO: implementation 'io.github.maoqis.glide9png:1.0.0.4.16.0'
-测试版DONE: implementation 'io.github.maoqis:glide9png:0.0.2.4.16.0-SNAPSHOT'
+测试版DONE: implementation 'io.github.maoqis:glide9png:0.0.3.4.16.0-SNAPSHOT'
 ````
 
 ```
-mavenCentral 应该会包含 0.0.2.4.16.0-SNAPSHOT 和 1.0.0.4.16.0 。
-可能push下面仓库后需要等段时间才能加载。
 
 //测试 snapshots
 maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' 
