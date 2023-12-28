@@ -1,11 +1,14 @@
 package com.github.maoqis.glide9png.target;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.DrawableImageViewTarget;
 import com.bumptech.glide.request.target.ImageViewTargetFactory;
 import com.bumptech.glide.request.target.ViewTarget;
 
@@ -27,6 +30,8 @@ public class NinePngImageViewTargetFactory extends ImageViewTargetFactory {
 
         if (Bitmap.class.equals(clazz)) {
             return (ViewTarget<ImageView, Z>) new NinePngImageViewTarget(view);
+        } else if (Drawable.class.isAssignableFrom(clazz)) {
+            return (ViewTarget<ImageView, Z>) new NineDrawableImageViewTarget(view);
         } else {
             return imageViewTargetFactory.buildTarget(view, clazz);
         }
