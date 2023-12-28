@@ -77,6 +77,9 @@ NinePngGlideApi.afterGlideInit(GlideApp.get(MainActivity.this.getApplicationCont
 https://github.com/maoqis/AndroidExperienceCase/blob/master/app/src/main/java/com/maoqis/testcase/feature/GlideNinePngFragment.java
 ```
 
+![image](https://raw.githubusercontent.com/maoqis/AndroidExperienceCase/master/images/temp.png)
+
+
 ## 参考
 
 
