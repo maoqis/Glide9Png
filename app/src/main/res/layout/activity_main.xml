@@ -7,25 +7,33 @@
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/bt_click"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:text="加载appt后的9.png，需要配置fitXY，这块可以统一设置进去，但是难恢复。点击->">
+            android:layout_height="wrap_content"
+            android:text="加载appt后的9.png，会给ImageView自动设置fitXY。点击->">
 
         </Button>
 
         <ImageView
-            android:scaleType="centerCrop"
             android:id="@+id/iv_test"
             android:layout_width="match_parent"
-            android:layout_height="48dp">
+            android:layout_height="48dp"
+            android:scaleType="centerCrop" />
 
-        </ImageView>
+        <Button
+            android:id="@+id/bt_not_appt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="加载没有经过appt编译前的9.png，会恢复之前的设置centerCrop。点击->">
+
+        </Button>
+
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

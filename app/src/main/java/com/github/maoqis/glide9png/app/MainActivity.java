@@ -32,7 +32,13 @@ public class MainActivity extends AppCompatActivity {
                     .load(urlChunk)
                     .into(iv);
         });
+        findViewById(R.id.bt_not_appt).setOnClickListener(v -> {
+            Log.d(TAG, "bt_click: ");
 
+            GlideApp.with(MainActivity.this)
+                    .load(url)
+                    .into(iv);
+        });
         //sdcard 权限，网络在xml中
         checkPermissionAndLoadImg();
 

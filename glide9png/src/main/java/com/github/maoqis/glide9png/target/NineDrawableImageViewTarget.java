@@ -22,11 +22,13 @@ public class NineDrawableImageViewTarget extends DrawableImageViewTarget {
         if (resource instanceof NinePatchDrawable) {
             is9Png = true;
         }
-        Log.d(TAG, "setResource: is9Png=" + is9Png);
+        Log.d(TAG, "setResource: is9Png=" + is9Png
+                + " resource=" + resource);
         if (is9Png) {
             NineTargetUtils.setFitXYFor9Png(view);
             super.setResource(resource);
         } else {
+            //加载新的资源时候，会先设置resource = null，这样就恢复了上次ImageView scaleType，并清除了恢复标记
             NineTargetUtils.restoreScaleType(view);
             super.setResource(resource);
         }
