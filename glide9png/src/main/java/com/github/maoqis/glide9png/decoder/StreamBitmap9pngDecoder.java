@@ -1,5 +1,6 @@
 package com.github.maoqis.glide9png.decoder;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -28,11 +29,13 @@ public class StreamBitmap9pngDecoder implements ResourceDecoder<InputStream, Bit
     private static final String TAG = "StreamBitmap9pngDecoder";
     private final BitmapPool bitmapPool;
     private final ArrayPool arrayPool;
+    private final Resources resources;
 
 
-    public StreamBitmap9pngDecoder(BitmapPool bitmapPool, ArrayPool arrayPool) {
+    public StreamBitmap9pngDecoder(BitmapPool bitmapPool, ArrayPool arrayPool, Resources resources) {
         this.bitmapPool = bitmapPool;
         this.arrayPool = arrayPool;
+        this.resources = resources;
     }
 
     @Override
@@ -47,8 +50,8 @@ public class StreamBitmap9pngDecoder implements ResourceDecoder<InputStream, Bit
 
     @Override
     public Resource<Bitmap> decode(@NonNull InputStream source, int width, int height, @NonNull Options options) throws IOException {
-        Log.d(TAG, "decode: ");
-        Bitmap bitmap = BitmapFactory.decodeStream(source, null, new BitmapFactory.Options());
+        Log.d(TAG, "decode:");
+        Bitmap bitmap = NinePngUtils.getNineBitmap(source, resources);
         return BitmapResource.obtain(bitmap, bitmapPool);
     }
 

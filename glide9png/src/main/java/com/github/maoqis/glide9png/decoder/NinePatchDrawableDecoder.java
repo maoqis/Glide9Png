@@ -17,7 +17,7 @@ import com.bumptech.glide.util.Preconditions;
 import java.io.IOException;
 
 public class NinePatchDrawableDecoder<DataType> implements ResourceDecoder<DataType, NinePatchDrawable> {
-    private static final String TAG = "NineBitmapDrawableDecoder";
+    private static final String TAG = "NinePatchDrawableDecode";
     private final ResourceDecoder<DataType, Bitmap> decoder;
     private final Resources resources;
     private final ArrayPool arrayPool;

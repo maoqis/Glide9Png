@@ -44,8 +44,8 @@ public class NinePngGlideModule extends LibraryGlideModule {
         final Resources resources = context.getResources();
         final BitmapPool bitmapPool = glide.getBitmapPool();
         final ArrayPool arrayPool = glide.getArrayPool();
-        ByteBufferBitmap9pngDecoder byteBufferBitmapDecoder = new ByteBufferBitmap9pngDecoder(bitmapPool);
-        StreamBitmap9pngDecoder streamBitmapDecoder = new StreamBitmap9pngDecoder(bitmapPool, arrayPool);
+        ByteBufferBitmap9pngDecoder byteBufferBitmapDecoder = new ByteBufferBitmap9pngDecoder(bitmapPool,resources);
+        StreamBitmap9pngDecoder streamBitmapDecoder = new StreamBitmap9pngDecoder(bitmapPool, arrayPool,resources);
         ResourceDecoder<ParcelFileDescriptor, Bitmap> parcelFileDescriptorVideoDecoder = VideoDecoder.parcel(bitmapPool);
 
         NinePngBitmapEncoder bitmapEncoder = new NinePngBitmapEncoder(arrayPool);

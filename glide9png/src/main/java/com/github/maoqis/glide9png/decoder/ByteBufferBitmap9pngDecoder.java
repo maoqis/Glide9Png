@@ -1,8 +1,8 @@
 package com.github.maoqis.glide9png.decoder;
 
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -21,12 +21,14 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 
 public class ByteBufferBitmap9pngDecoder implements ResourceDecoder<ByteBuffer, Bitmap> {
-    private static final String TAG = "ByteBufferBitmap9pngDecoder";
+    private static final String TAG = "ByteBufferBitmap9pngDec";
     private final BitmapPool bitmapPool;
+    private final Resources resources;
 
 
-    public ByteBufferBitmap9pngDecoder(BitmapPool bitmapPool) {
+    public ByteBufferBitmap9pngDecoder(BitmapPool bitmapPool, Resources resources) {
         this.bitmapPool = bitmapPool;
+        this.resources = resources;
     }
 
 
@@ -52,7 +54,7 @@ public class ByteBufferBitmap9pngDecoder implements ResourceDecoder<ByteBuffer, 
         boolean is9png = options.get(Constants.IS_9PNG);
         Log.d(TAG, "decode: is9png=" + is9png);
         InputStream is = ByteBufferUtil.toStream(source);
-        Bitmap bitmap = BitmapFactory.decodeStream(is, null, new BitmapFactory.Options());
+        Bitmap bitmap = NinePngUtils.getNineBitmap(is,resources);
         return BitmapResource.obtain(bitmap, bitmapPool);
 
     }

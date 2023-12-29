@@ -2,6 +2,7 @@ package com.github.maoqis.glide9png.utils;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.NinePatch;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -9,10 +10,12 @@ import android.graphics.drawable.NinePatchDrawable;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.load.ImageHeaderParser;
 import com.bumptech.glide.load.ImageHeaderParserUtils;
 import com.bumptech.glide.load.engine.bitmap_recycle.ArrayPool;
+import com.github.maoqis.glide9png.NinePngGlideConfig;
 import com.github.maoqis.glide9png.io.IntReader;
 import com.github.maoqis.glide9png.io.ByteBufferReader;
 
@@ -25,6 +28,7 @@ import java.nio.ByteOrder;
 import java.util.ArrayList;
 
 public class NinePngUtils {
+
 
     private static final String TAG = "NinePngUtils";
     /**
@@ -185,5 +189,13 @@ public class NinePngUtils {
         }
     }
 
-
+    @Nullable
+    public static Bitmap getNineBitmap(InputStream is, Resources resources) {
+        BitmapFactory.Options opts = new BitmapFactory.Options();
+        int srcDpi = resources.getDisplayMetrics().densityDpi;
+        opts.inDensity = NinePngGlideConfig.getInstance().designDensity;
+        Log.d(TAG, "getNineBitmap: densityDpi=" + srcDpi + " to designDensity（3倍图默认480）=" + opts.inDensity);
+        Bitmap bitmap = BitmapFactory.decodeStream(is, null, opts);
+        return bitmap;
+    }
 }
