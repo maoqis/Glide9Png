@@ -61,13 +61,13 @@ NinePngGlideApi.afterGlideInit(GlideApp.get(MainActivity.this.getApplicationCont
 
 ### 1.4 调用方式没变
 
+支持加载到src，您不用单独为ImageView设置scaleType=FitXY。
+
 ```
             GlideApp.with(MainActivity.this)
                     .load(urlChunk)
                     .into(iv);
 ```
-
-由于9.png一般是用于背景图。如果src使用时候，需要考虑图片imageType，一般用于FitXY模式。
 
 ### 1.5 用dp显示了9.png图片了，而非px显示。默认1dp=3px。
 
@@ -88,7 +88,6 @@ TOOD: 为单独的某一次请求配置Bitmap显示成多少dp。
 现在屏幕还是1080px宽度变成392dp。
 那应该显示46.6666dp * 392(int类型精度问题) /360 。360对应dpi=480；392对应dip=440左右（因392的精度问题）。
 ```
-
 
 ## 二、资源
 
@@ -114,7 +113,8 @@ https://github.com/maoqis/AndroidExperienceCase/blob/master/app/src/main/java/co
 
 ### NineDrawableImageViewTarget 中为ImageView 设置了 FitXY
 
-如果是非9.png 内容，通过tag 恢复到原来ScaleType
+由于9.png一般是用于背景图。如果src使用时候，需要考虑图片imageType，一般用于FitXY模式。
+NineDrawableImageViewTarget 中为ImageView 设置了 FitXY, 并在加载到非9png图片后进行恢复last ScaleType
 
 ```agsl
     protected void setResource(@Nullable Drawable resource) {
