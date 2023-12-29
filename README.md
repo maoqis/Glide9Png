@@ -14,7 +14,7 @@ displaying NinePatchDrable to ImageView. You just need to init the library after
 
 ````
 正式版TODO: implementation 'io.github.maoqis.glide9png:1.0.0.4.16.0'
-测试版DONE: implementation 'io.github.maoqis:glide9png:0.0.3.4.16.0-SNAPSHOT'
+测试版DONE: implementation 'io.github.maoqis:glide9png:0.0.4.4.16.0-SNAPSHOT'
 ````
 
 ```
