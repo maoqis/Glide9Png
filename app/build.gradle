@@ -39,7 +39,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    implementation useLocalModule ? project(':glide9png') : 'io.github.maoqis.glide9png:0.0.5.4.16.0-SNAPSHOT'
-    implementation useLocalModule ? project(':AndroidBaseLib:base') : 'io.github.maoqis.androidbase:0.0.1-SNAPSHOT'
+    implementation project(':Glide9Png:glide9png')
+    implementation project(':Glide9Png:demo')
+    implementation project(':AndroidBaseLib:base')
 
 }

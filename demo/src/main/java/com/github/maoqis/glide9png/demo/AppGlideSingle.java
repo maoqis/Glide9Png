@@ -1,4 +1,4 @@
-package com.github.maoqis.glide9png.app;
+package com.github.maoqis.glide9png.demo;
 
 import android.content.Context;
 import android.util.Log;

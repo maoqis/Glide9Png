@@ -7,38 +7,23 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
 
-import com.github.maoqis.glide9png.NinePngGlideApi;
+import com.github.maoqis.glide9png.demo.GlideNinePngFragment;
+
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        NinePngGlideApi.afterGlideInit(GlideApp.get(MainActivity.this.getApplicationContext()));
+
         setContentView(R.layout.activity_main);
-        ImageView iv = findViewById(R.id.iv_test);
 
-        String url = "https://www.xijnp.com:8888/down/0jBZcbLr8X7h.png";
-        String urlChunk = "https://www.xijnp.com:8888/down/TYe2aqTbwIBj.png";
+        this.getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fl_content, new GlideNinePngFragment())
+                .commit();
 
-        findViewById(R.id.bt_click).setOnClickListener(v -> {
-            Log.d(TAG, "bt_click: ");
-
-            GlideApp.with(MainActivity.this)
-                    .load(urlChunk)
-                    .into(iv);
-        });
-        findViewById(R.id.bt_not_appt).setOnClickListener(v -> {
-            Log.d(TAG, "bt_click: ");
-
-            GlideApp.with(MainActivity.this)
-                    .load(url)
-                    .into(iv);
-        });
         //sdcard 权限，网络在xml中
         checkPermissionAndLoadImg();
 

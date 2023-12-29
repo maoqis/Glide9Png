@@ -86,6 +86,10 @@ public class NinePngGlideModule extends LibraryGlideModule {
             field = glideContext.getClass().getDeclaredField("imageViewTargetFactory");
             field.setAccessible(true);
             ImageViewTargetFactory imageViewTargetFactory = (ImageViewTargetFactory) field.get(glideContext);
+            if (imageViewTargetFactory instanceof NinePngImageViewTargetFactory) {
+                Log.d(TAG, "replaceImageViewTargetFactory: 不用重复设置 return");
+                return;
+            }
             ImageViewTargetFactory factory = new NinePngImageViewTargetFactory(imageViewTargetFactory);
             field.set(glideContext, factory);
             field.setAccessible(false);
