@@ -66,19 +66,33 @@ NinePngGlideApi.afterGlideInit(GlideApp.get(MainActivity.this.getApplicationCont
                     .load(urlChunk)
                     .into(iv);
 ```
+
 由于9.png一般是用于背景图。如果src使用时候，需要考虑图片imageType，一般用于FitXY模式。
 
 ### 1.5 用dp显示了9.png图片了，而非px显示。默认1dp=3px。
 
-目前9png解析时候Bitmap中density的dpi=480 ，即3倍图。140px，现场为46.6666dp。
+```
+目前9png解析时候Bitmap中density的dpi=480 ，即3倍图。140px，显示为46.6666dp。
 
 API 见NinePngGlideApi.setDesignDensityDPI
+```
+
+#### 多设备适配（TODO）
+
+TOOD: 为单独的某一次请求配置Bitmap显示成多少dp。
+自定义GlideOption方法，Option中保持setDesignDensityDPI。
+
+```
+为了适配不同设备密度的变化，比如Pad，精细密度392dp、屏幕宽度411dp等。
+比如原来360dp宽（1080px）的手机上，要显示46.6666dp。如果要等比例显示。
+现在屏幕还是1080px宽度变成392dp。
+那应该显示46.6666dp * 392(int类型精度问题) /360 。360对应dpi=480；392对应dip=440左右（因392的精度问题）。
+```
+
 
 ## 二、资源
 
 ### 需要经过经过adb工具appt编译后的9.png
-
-
 
 ### 如果后台上传图标时候支持9.png图标就好了。
 
