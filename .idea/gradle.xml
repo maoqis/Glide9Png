@@ -11,7 +11,9 @@
         <option name="gradleJvm" value="jbr-17" />
         <option name="modules">
           <set>
+            <option value="$PROJECT_DIR$/../AndroidBaseLib/base" />
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/AndroidBaseLib" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/glide9png" />
           </set>
