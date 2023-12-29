@@ -9,7 +9,7 @@ dependencies {
 }
 
 android {
-    namespace 'com.github.maoqis.glide9png.app'
+    namespace 'com.github.maoqis.glide9png'
     compileSdkVersion COMPILE_SDK_VERSION as int
     buildToolsVersion BUILD_TOOLS_VERSION as String
 
