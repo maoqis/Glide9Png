@@ -6,7 +6,7 @@ A Glide 9.png intergration library for decoding 9.png file to NinePatchDrawable 
 source Bimap(has the 9.png chunk) and NinePatchDrawable, encoding to config save source data, and
 displaying NinePatchDrable to ImageView. You just need to init the library after Glide be inited
 
-## 接入 （guide）
+## 一、接入 （guide）
 
 ### 1.1 仓库引入（import maven）
 
@@ -66,10 +66,29 @@ NinePngGlideApi.afterGlideInit(GlideApp.get(MainActivity.this.getApplicationCont
                     .load(urlChunk)
                     .into(iv);
 ```
-
 由于9.png一般是用于背景图。如果src使用时候，需要考虑图片imageType，一般用于FitXY模式。
 
-## 源码实现的步骤
+### 1.5 用dp显示了9.png图片了，而非px显示。默认1dp=3px。
+
+目前9png解析时候Bitmap中density的dpi=480 ，即3倍图。140px，现场为46.6666dp。
+
+API 见NinePngGlideApi.setDesignDensityDPI
+
+## 二、资源
+
+### 需要经过经过adb工具appt编译后的9.png
+
+
+
+### 如果后台上传图标时候支持9.png图标就好了。
+
+TODO：可以把设计出的9.png图标，自动生成appt编译后图标。
+
+1. 需要校验上传的9.png是否满足9png。
+2. 使用appt编译：编译后的png就有9.png对应的chunk信息。
+3. 校验下客户端的api能否读取出chunk信息。如果客户端读取时候有问题，也不能使用。
+
+## 三、源码实现的步骤
 
 可以运行 AndroidExperienceCase 看下。
 
