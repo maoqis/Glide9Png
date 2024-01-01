@@ -18,7 +18,7 @@ displaying NinePatchDrable to ImageView. You just need to init the library after
 ````
 
 ```
-
+//正式 mavenCentral()
 //测试 snapshots
 maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' 
 
