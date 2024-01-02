@@ -1,14 +1,16 @@
 
 rootProject.name = "Glide9Png"
 
+
+
 include ':Glide9Png:app'
 project(':Glide9Png:app').projectDir = new File(settingsDir, 'app')
 
-include ':Glide9Png:glide9png'
-project(':Glide9Png:glide9png').projectDir = new File(settingsDir, 'glide9png')
+
 
 include ':Glide9Png:demo'
 project(':Glide9Png:demo').projectDir = new File(settingsDir, 'demo')
 include ':AndroidBaseLib:base'
 project(':AndroidBaseLib:base').projectDir = new File(settingsDir, '../AndroidBaseLib/base')
-
+include ':Glide9Png:glide9pnglib'
+project(':Glide9Png:glide9pnglib').projectDir = new File(settingsDir, 'glide9pnglib')
