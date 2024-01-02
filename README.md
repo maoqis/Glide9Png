@@ -141,6 +141,6 @@ NineDrawableImageViewTarget 中为ImageView 设置了 FitXY, 并在加载到非9
 1. 支持Glide加载appt后的9.png图片，并使用原数据流作为文件缓存、公用内存缓存、活动缓存。
 2. 支持显示9.png时，自动切换ScaleType模式。9.png使用FitXY显示；再显示其他格式时恢复上次模式比如CenterCrop。
 3. 支持简单3步取，.into直接显示的ImageView。不用做额外操作，比如asBitmap，dontTransform（所以的transform都被屏蔽）。
-### 1.1 （TODO）
-1. 想不到什么功能了。支持自定义https ca证书？
+### 1.0.1 （TODO）
+1. 修复pom文件中子依赖库问题。
 
