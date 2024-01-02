@@ -13,8 +13,8 @@ displaying NinePatchDrable to ImageView. You just need to init the library after
 源码中Glide4使用的4.16.0进行适配。版本号时候追加 .4.16.0
 
 ````
-正式版DONE: implementation 'io.github.maoqis.glide9png:1.0.0.4.16.0'
-测试版DONE: implementation 'io.github.maoqis:glide9png:0.0.5.4.16.0-SNAPSHOT'
+正式版DONE: implementation 'io.github.maoqis:glide9png:1.0.0.4.16.0'
+测试版DONE: implementation 'io.github.maoqis:glide9png:0.0.4.4.16.0-SNAPSHOT'
 ````
 
 ```
