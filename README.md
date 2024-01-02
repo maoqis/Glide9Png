@@ -13,8 +13,8 @@ displaying NinePatchDrable to ImageView. You just need to init the library after
 源码中Glide4使用的4.16.0进行适配。版本号时候追加 .4.16.0
 
 ````
-正式版DONE: implementation 'io.github.maoqis:glide9png:1.0.0.4.16.0'
-测试版DONE: implementation 'io.github.maoqis:glide9png:0.0.4.4.16.0-SNAPSHOT'
+正式版DONE: implementation 'io.github.maoqis:glide9png:1.0.1.4.16.0'
+测试版DONE: implementation 'io.github.maoqis:glide9png:1.0.1.4.16.0-SNAPSHOT'
 ````
 
 ```
@@ -136,11 +136,14 @@ NineDrawableImageViewTarget 中为ImageView 设置了 FitXY, 并在加载到非9
 ## 参考
 
 ## 版本更新
-### 1.0.0
+
+### 1.0.1 （TODO）
+1. 修复pom文件中子依赖库问题。
+
+### 1.0.0 (废弃，依赖有问题)
 24年元旦过完发布。
 1. 支持Glide加载appt后的9.png图片，并使用原数据流作为文件缓存、公用内存缓存、活动缓存。
 2. 支持显示9.png时，自动切换ScaleType模式。9.png使用FitXY显示；再显示其他格式时恢复上次模式比如CenterCrop。
 3. 支持简单3步取，.into直接显示的ImageView。不用做额外操作，比如asBitmap，dontTransform（所以的transform都被屏蔽）。
-### 1.0.1 （TODO）
-1. 修复pom文件中子依赖库问题。
+
 
