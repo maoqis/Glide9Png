@@ -1,8 +1,8 @@
 
 rootProject.name = "Glide9Png"
 
-include ':app'
-
+include ':Glide9Png:app'
+project(':Glide9Png:app').projectDir = new File(settingsDir, 'app')
 
 include ':Glide9Png:glide9png'
 project(':Glide9Png:glide9png').projectDir = new File(settingsDir, 'glide9png')

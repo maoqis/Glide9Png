@@ -4,8 +4,14 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.16.0'
 
     implementation 'io.github.maoqis:glide9png:1.0.0.4.16.0'
-    print("useLocalModule in demo=" + useLocalModule)
-    implementation useLocalModule ? project(':AndroidBaseLib:base') : 'io.github.maoqis.androidbase:0.0.1-SNAPSHOT'
+
+    if (useLocalModule as boolean) {
+        print(" demo implementation :AndroidBaseLib:base useLocalModule=" + useLocalModule)
+        implementation project(':AndroidBaseLib:base')
+    } else {
+        print("demo implementation io.github.maoqis:androidbase useLocalModule=" + useLocalModule)
+        implementation 'io.github.maoqis:androidbase:0.0.1-SNAPSHOT'
+    }
 
 }
 
