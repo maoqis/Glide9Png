@@ -32,7 +32,24 @@ task clean(type: Delete) {
 }
 
 ext {
+    boolean IS_PUSH_RELEASE = false//TODO:push RELEASE set to true
+
+    var SUFFIX_MAVEN = ""
+    if (IS_PUSH_RELEASE) {
+        SUFFIX_MAVEN = ""
+    } else {
+        SUFFIX_MAVEN = "-SNAPSHOT"
+    }
     GLIDE_MAJOR_VERSION = GLIDE_VERSION.split("\\.")[0] as String
-    VERSION_NAME = "${DECODER_VERSION}.${GLIDE_VERSION}-SNAPSHOT"
+
+    IS_USE_MAVEN = useMavenStr == "true"
+    if (IS_PUSH_RELEASE) {
+        print("set IS_USE_MAVEN = true because IS_PUSH_RELEASE")
+        IS_USE_MAVEN = true
+    }
+
+    // useMavenStr 为"true" string情况下使用。useMavenStr放properties中，可实现多个project中modules使用相同配置。
+    VERSION_NAME = "${DECODER_VERSION}.${GLIDE_VERSION}" + SUFFIX_MAVEN
+    VERSION_ANDROID_BASE = "0.0.1" + "-SNAPSHOT"
 }
 
