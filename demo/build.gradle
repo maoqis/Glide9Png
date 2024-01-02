@@ -3,7 +3,8 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:4.16.0"
     implementation 'com.github.bumptech.glide:glide:4.16.0'
 
-    implementation useLocalModule ? project(':Glide9Png:glide9png') : 'io.github.maoqis.glide9png:0.0.5.4.16.0-SNAPSHOT'
+    implementation 'io.github.maoqis:glide9png:1.0.0.4.16.0'
+    print("useLocalModule in demo=" + useLocalModule)
     implementation useLocalModule ? project(':AndroidBaseLib:base') : 'io.github.maoqis.androidbase:0.0.1-SNAPSHOT'
 
 }
