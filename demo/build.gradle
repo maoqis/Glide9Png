@@ -3,15 +3,11 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:4.16.0"
     implementation 'com.github.bumptech.glide:glide:4.16.0'
 
-    if (IS_USE_MAVEN) {//useMavenStr 多个project如果有相同的变量。只取一个值，用的是编译时候用的project中变量。
-        print("demo implementation io.github.maoqis:androidbase IS_USE_MAVEN=" + IS_USE_MAVEN)
-        api "io.github.maoqis:glide9png:${VERSION_NAME}"
-        api "io.github.maoqis:androidbase:${VERSION_ANDROID_BASE}"
-    } else {
-        print(" demo implementation :AndroidBaseLib:base IS_USE_MAVEN=" + IS_USE_MAVEN)
-        api project(':AndroidBaseLib:base')
-        api project(':Glide9Png:glide9pnglib')
-    }
+    print("demo implementation io.github.maoqis:androidbase IS_USE_MAVEN=" + IS_USE_MAVEN)
+    //使用本地仓库代替了project引入
+    api "io.github.maoqis:glide9png:${VERSION_NAME}"
+    api "io.github.maoqis:androidbase:${VERSION_ANDROID_BASE}"
+
 
 }
 
@@ -37,5 +33,6 @@ android {
     }
 
 }
+
 
 

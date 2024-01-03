@@ -8,6 +8,12 @@ buildscript {
 
         google()
         maven { url 'https://maven.aliyun.com/repository/public/' }
+
+        //这里面指的是pull，当然push也是用的这个自动。
+        if (useMavenStr == "mavenLocal") {
+            println("buildscript join mavenLocal")
+            mavenLocal()
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:${ANDROID_GRADLE_VERSION}"
@@ -26,6 +32,10 @@ allprojects {
 
         google()
         maven { url 'https://maven.aliyun.com/repository/public/' }
+        if (useMavenStr == "mavenLocal") {
+            println("allprojects join mavenLocal")
+            mavenLocal()
+        }
     }
 }
 
@@ -44,7 +54,7 @@ ext {
     }
     GLIDE_MAJOR_VERSION = GLIDE_VERSION.split("\\.")[0] as String
     print("useMavenStr=" + useMavenStr)
-    IS_USE_MAVEN = useMavenStr == "true"
+    IS_USE_MAVEN = useMavenStr == "remote" || useMavenStr == "mavenLocal"
     if (IS_PUSH_RELEASE) {
         print("set IS_USE_MAVEN = true because IS_PUSH_RELEASE")
         IS_USE_MAVEN = true

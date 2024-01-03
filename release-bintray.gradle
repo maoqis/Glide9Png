@@ -166,7 +166,7 @@ publishing {
             // The username and password we've fetched earlier
 //                def ossrhUsername = getRepositoryUsername()
 //                def ossrhPassword = getRepositoryPassword()
-            print("ossrhUsername=" + ossrhUsername + " $VERSION_NAME" + " 子仓库中moudle会调用子仓库中gradle.properties的属性 " + url)
+            println("ossrhUsername=" + ossrhUsername + " $VERSION_NAME" + " 子仓库中moudle会调用子仓库中gradle.properties的属性 " + url)
             credentials {
                 username ossrhUsername
                 password ossrhPassword

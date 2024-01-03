@@ -40,3 +40,23 @@ dependencies {
     api project(':Glide9Png:demo')
 
 }
+
+// 子module会覆盖主工程中的 projectsEvaluated，所以独一份
+gradle.projectsEvaluated {
+    pushLocalMavenBeforePreBuild(":Glide9Png:demo", ':AndroidBaseLib:base')
+
+    pushLocalMavenBeforePreBuild(":Glide9Png:demo", ':Glide9Png:glide9pnglib')
+}
+
+private void pushLocalMavenBeforePreBuild(var String mainLib, var String implementLib) {
+    def task = project(mainLib).tasks.findByName('preBuild')
+    println("projectsEvaluated preBuild=" + task.getPath())
+
+
+    def base = project(implementLib)
+    println("projectsEvaluated 依赖库 path=" + base.getPath() + " tasks size=" + base.tasks.size())
+
+    def publishMavenLocal = base.tasks.getByName("publishToMavenLocal")
+    println("projectsEvaluated " + publishMavenLocal.getPath() + " 在preBuild前运行")
+    task.dependsOn(publishMavenLocal)
+}
