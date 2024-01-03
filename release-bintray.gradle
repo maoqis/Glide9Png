@@ -18,7 +18,7 @@ version = VERSION_NAME
 //配置from gradle.properties
 group = GROUP
 
-File secretPropsFile = project.rootProject.file('local.properties')
+File secretPropsFile = project.file('../local.properties')
 if (secretPropsFile.exists()) {
     println "Found secret props file, loading props"
     Properties p = new Properties()
