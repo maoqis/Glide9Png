@@ -10,7 +10,11 @@ project(':Glide9Png:app').projectDir = new File(settingsDir, 'app')
 
 include ':Glide9Png:demo'
 project(':Glide9Png:demo').projectDir = new File(settingsDir, 'demo')
-include ':AndroidBaseLib:base'
-project(':AndroidBaseLib:base').projectDir = new File(settingsDir, '../AndroidBaseLib/base')
-include ':Glide9Png:glide9pnglib'
-project(':Glide9Png:glide9pnglib').projectDir = new File(settingsDir, 'glide9pnglib')
+if (useMavenStr == "true") {
+
+} else {
+    include ':AndroidBaseLib:base'
+    project(':AndroidBaseLib:base').projectDir = new File(settingsDir, '../AndroidBaseLib/base')//单独clone时候可能编译不过需要使用useMavenStr=true
+    include ':Glide9Png:glide9pnglib'
+    project(':Glide9Png:glide9pnglib').projectDir = new File(settingsDir, 'glide9pnglib')
+}
